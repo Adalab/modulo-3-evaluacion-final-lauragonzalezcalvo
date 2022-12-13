@@ -15,6 +15,7 @@ function App() {
   //___________________________________________ VARIABLES ESTADO____________________________________________________________________
   //Datos de la Api. Lo guardamos como un array vacío
   const [data, setData] = useState([]);
+  // FilterName
   const [name, setName] = useState("");
 
   //_____________________________________________ USEEFFECT_________________________________________________________________________
@@ -36,11 +37,11 @@ function App() {
   };
   //_____________________________________FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR_______________________________________________
   // Vamos a filtrar por nombre
-  //FALTA Si se busca por un texto por ejemplo "XXX" y no hay ningún personaje que coincida con dicho texto se debe mostrar un mensaje del tipo "No hay ningún personaje que coincida con la palabra XXX".
 
   const filteredCharacters = data.filter((searchCharacter) =>
     searchCharacter.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
   );
+
   //-------------- OBTENIENDO RUTAS.Se puede poner url.pathname. Accedemos a la propiedad del objeto URL.----------------------
   const { pathname } = useLocation();
   //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
@@ -49,7 +50,7 @@ function App() {
   // Vamos a hacer una validación por que no todas las rutas tienen un id.Y nos aparece null en la home. Así conseguimos el id
   const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
 
-  //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento. Lo pasamos a numero con parseInt
+  //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
   const characterFoundId = data.find(
     (character) => character.id === parseInt(characterId)
   );
@@ -66,9 +67,14 @@ function App() {
             <>
               <Filters
                 handleForm={handleForm}
+                name={name}
                 handleSearchName={handleSearchName}
               ></Filters>
-              <CharacterList characters={filteredCharacters}></CharacterList>
+
+              <CharacterList
+                characters={filteredCharacters}
+                name={name}
+              ></CharacterList>
             </>
           }
         ></Route>

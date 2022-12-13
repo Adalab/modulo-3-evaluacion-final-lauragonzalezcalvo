@@ -9,9 +9,8 @@ const FilterByName = (props) => {
         type="text"
         id="name"
         name="name"
-        // value={props.userCityValue}
+        value={props.name}
         onInput={handleName}
-        // {/*Por qué si lo llamamos userCityValue nos deja escribir en el input y si lo llamamos igual no userCity*/}
       ></input>
     </>
   );
