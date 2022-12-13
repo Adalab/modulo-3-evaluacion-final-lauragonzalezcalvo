@@ -3,7 +3,7 @@ import FilterByName from "./FilterByName";
 const Filter = (props) => {
   return (
     <form onSubmit={props.handleForm}>
-      <FilterByName></FilterByName>
+      <FilterByName handleSearchName={props.handleSearchName}></FilterByName>
     </form>
   );
 };
