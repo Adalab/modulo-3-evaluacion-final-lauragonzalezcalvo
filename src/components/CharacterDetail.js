@@ -18,7 +18,7 @@ const CharacterDetail = (props) => {
       </p>
       <p>{props.character.origin.name}</p>
       <p className="characters___Articles___Item--p">
-        {/* {props.character.episode}NUMERO DE EPISODIOS */}
+        {props.character.episode.length}
       </p>
       <p className="characters___Articles___Item--p">
         {props.character.status}
