@@ -29,20 +29,3 @@ const CharacterDetail = (props) => {
   );
 };
 export default CharacterDetail;
-
-// {/* <img
-//         className="characters___Articles___Item--img"
-//         src={character.image}
-//         alt={`Foto de ${character.name}`}
-//       />
-//       <h3 className="characters___Articles___Item--h3">{character.name}</h3>
-//       <p className="characters___Articles___Item--p">{character.species}</p> */}
-//       <p className="characters___Articles___Item--p">
-//         {character.origin.map((originName) => {
-//           return <h4>{originName.name}</h4>;
-//         })}
-//       </p>
-//       {/* <p className="characters___Articles___Item--p">{character.episode}</p>
-//      */}
-
-//

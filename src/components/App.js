@@ -36,18 +36,17 @@ function App() {
     setName(value);
   };
   //_____________________________________FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR_______________________________________________
-  // Vamos a filtrar por nombre
-
+  // Filtro por nombre
   const filteredCharacters = data.filter((searchCharacter) =>
     searchCharacter.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
   );
 
-  //-------------- OBTENIENDO RUTAS.Se puede poner url.pathname. Accedemos a la propiedad del objeto URL.----------------------
+  //------------------------------- OBTENIENDO RUTAS. Accedemos a la propiedad del objeto URL.----------------------
   const { pathname } = useLocation();
   //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
   const dataUrl = matchPath("/character/:characterId", pathname);
 
-  // Vamos a hacer una validación por que no todas las rutas tienen un id.Y nos aparece null en la home. Así conseguimos el id
+  // Vamos a hacer una validación , así conseguimos el id
   const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
 
   //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
@@ -78,7 +77,7 @@ function App() {
             </>
           }
         ></Route>
-        {/* Creamos una nueva ruta dinámina .1.Se compone de la parte estática. 2. Y la dinámica (el id)*/}
+        {/* Creamos una nueva ruta dinámina .1.Se compone de la parte estática. 2. la dinámica (el id)*/}
         <Route
           path="/character/:characterId"
           element={<CharacterDetail character={characterFoundId} />}
