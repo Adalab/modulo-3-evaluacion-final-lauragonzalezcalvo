@@ -1,0 +1,25 @@
+@import "../core/reset.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.characters {
+  font-family: $font-roboto;
+  background-color: $pageColor;
+
+  &__List {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: $pageColor;
+    color: $letterColor;
+  }
+  &__message {
+    width: 100vw;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+    }
+  }
+}

@@ -4,13 +4,16 @@
 
 .characterSection {
   height: 68vh;
+  height: 100%;
   background-color: black;
+  box-shadow: -1px 1px 30px $greenCards;
 }
 .character {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding-bottom: 20px;
   background-color: $pageColor;
+
   color: $letterColor;
 
   &__DetailItem {
@@ -36,16 +39,17 @@
   display: flex;
   justify-content: center;
   background-color: $pageColor;
-  color: $letterColor;
+  padding: 10px;
 
   &-icon {
     text-decoration: none;
-    color: $letterColor;
+    color: $blue;
   }
   &-icon:hover {
     transform: scale(1.2);
     transition: all 500ms;
     color: $green;
+
     // box-shadow: 0px 1px 30px $green;
   }
 }

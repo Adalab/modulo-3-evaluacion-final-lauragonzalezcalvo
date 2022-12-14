@@ -1,3 +1,5 @@
+import "../styles/components/FilterBySpecie.scss";
+
 const FilterBySpecie = ({ species, handleFilterSpecies, filterSpecie }) => {
   const speciesValue = (ev) => {
     return handleFilterSpecies(ev.target.value);
@@ -5,7 +7,7 @@ const FilterBySpecie = ({ species, handleFilterSpecies, filterSpecie }) => {
   const renderSpecies = () => {
     return species.map((specie, index) => {
       return (
-        <section key={index}>
+        <section key={index} className="form__species">
           <label htmlFor="specie" className="form__species-label">
             {specie}
           </label>

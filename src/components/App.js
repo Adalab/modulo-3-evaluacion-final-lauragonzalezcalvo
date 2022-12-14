@@ -28,7 +28,7 @@ function App() {
     });
   }, []);
 
-  //_______________________________________ FUNCIONES HANDLER_______________________________________________________________________
+  //________________________________________ FUNCIONES HANDLER_______________________________________________________________________
 
   const handleForm = (ev) => {
     ev.preventDefault();
@@ -52,7 +52,6 @@ function App() {
   //Map para traernos a FilterBySpecie solo los species
   const getSpecies = () => {
     const characterSpecie = data.map((character) => character.species);
-    // return characterSpecie;
     //la primera posicion del elemento del array
     const uniqueSpecies = characterSpecie.filter((character, index) => {
       return characterSpecie.indexOf(character) === index;
@@ -97,7 +96,7 @@ function App() {
         <Route
           path="/"
           element={
-            <>
+            <main>
               <Filters
                 handleForm={handleForm}
                 name={name}
@@ -111,7 +110,7 @@ function App() {
                 characters={filteredCharacters}
                 name={name}
               ></CharacterList>
-            </>
+            </main>
           }
         ></Route>
         {/* Creamos una nueva ruta dinámina .1.Se compone de la parte estática. 2. la dinámica (el id)*/}

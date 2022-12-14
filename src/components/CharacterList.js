@@ -1,5 +1,5 @@
 import CharacterCard from "./CharacterCard";
-import "../styles/components/SectionListCharacters.scss";
+import "../styles/components/CharacterList.scss";
 
 const CharacterList = ({ characters, name }) => {
   characters.sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0));
@@ -14,7 +14,15 @@ const CharacterList = ({ characters, name }) => {
     if (characters.length !== 0) {
       return elementList;
     } else {
-      return `No hay ningún personaje que coincida con la palabra ${name}.`;
+      return (
+        <li className="characters__message">
+          <article className="characters__message-text">
+            <p>
+              {`No hay ningún personaje que coincida con la palabra ${name}.`}
+            </p>
+          </article>
+        </li>
+      );
     }
   };
 

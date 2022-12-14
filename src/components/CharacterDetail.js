@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "../styles/components/CharacterDetail.scss";
 
 const CharacterDetail = (props) => {
-  console.log(props);
   if (props.character === undefined) {
     return true;
   }

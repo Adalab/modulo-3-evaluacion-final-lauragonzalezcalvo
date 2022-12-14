@@ -1,0 +1,13 @@
+@import "../core/reset.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.form {
+  &__species {
+    display: flex;
+    align-items: center;
+    &-label {
+      padding: 5px;
+    }
+  }
+}

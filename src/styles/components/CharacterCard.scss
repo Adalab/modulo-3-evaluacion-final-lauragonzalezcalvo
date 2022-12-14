@@ -1,0 +1,48 @@
+@import "../core/reset.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.characters {
+  &__Link {
+    color: $letterColor;
+  }
+  &___Articles {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px 20px 0px;
+
+    &___Item {
+      background-color: $pageColor;
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // box-shadow: -1px 1px 30px $greenCards;
+
+      &--h3 {
+        font-size: 20px;
+        font-weight: 600;
+        padding-top: 10px;
+        list-style: none;
+        text-decoration: none;
+      }
+      &--p {
+        font-size: 20px;
+      }
+      &--img {
+        border-radius: 320px;
+      }
+    }
+  }
+}
+
+.characters___Articles___Item:hover {
+  background-image: url(../../images/gifrickymorty.gif);
+  background-position: center;
+  background-size: 570px;
+  background-color: aqua;
+  box-shadow: -1px 1px 30px $green;
+  opacity: 95%;
+  color: black;
+}

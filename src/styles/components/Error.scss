@@ -1,3 +1,17 @@
-.colorError {
-  background-color: aquamarine;
+@import "../core/reset.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.errorPage {
+  font-family: $font-roboto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__img {
+    height: 800px;
+  }
+  &__text {
+    color: $green;
+  }
 }

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import "../styles/components/CharacterCard.scss";
+
 const CharacterCard = ({ character }) => {
   return (
     <li className="characters___Articles">
-      <Link to={`/character/${character.id}`}>
+      <Link className="characters__Link" to={`/character/${character.id}`}>
         <article className="characters___Articles___Item">
           <img
             className="characters___Articles___Item--img"

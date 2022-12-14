@@ -10,32 +10,4 @@
   padding: 10px 10px 10px 10px;
   font-family: $font-roboto;
   color: $letterColor;
-
-  &__names {
-    &-label {
-    }
-    &-input {
-      margin: 5px 45px 2px 45px;
-      width: 150px;
-      background-color: $pageColor;
-      border-color: $letterColor;
-      border-radius: 5px;
-      color: $letterColor;
-    }
-  }
-  &__species {
-    padding-top: 5px;
-    &-label {
-      padding-right: 3px;
-    }
-    &-input {
-    }
-  }
 }
-
-// @include tablet {
-
-//   }
-//   @include desktop {
-
-//   }
