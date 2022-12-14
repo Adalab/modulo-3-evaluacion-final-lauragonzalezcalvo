@@ -18,7 +18,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      // box-shadow: -1px 1px 30px $greenCards;
 
       &--h3 {
         font-size: 20px;
@@ -40,9 +39,8 @@
 .characters___Articles___Item:hover {
   background-image: url(../../images/gifrickymorty.gif);
   background-position: center;
-  background-size: 570px;
-  background-color: aqua;
+  background-size: 590px;
   box-shadow: -1px 1px 30px $green;
   opacity: 95%;
-  color: black;
+  color: $pageColor;
 }
