@@ -3,9 +3,9 @@ import "../styles/components/CharacterDetail.scss";
 
 const CharacterDetail = (props) => {
   console.log(props);
-  // if (props.character === undefined) {
-  //   return true;
-  // }
+  if (props.character === undefined) {
+    return true;
+  }
   return (
     <section className="characterSection">
       <div className="goBack">

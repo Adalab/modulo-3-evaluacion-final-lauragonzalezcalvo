@@ -9,7 +9,11 @@ const Filter = (props) => {
         name={props.name}
         handleSearchName={props.handleSearchName}
       ></FilterByName>
-      <FilterBySpecie specie={props.specie}></FilterBySpecie>
+      <FilterBySpecie
+        filterSpecie={props.filterSpecie}
+        species={props.species}
+        handleFilterSpecies={props.handleFilterSpecies}
+      ></FilterBySpecie>
     </form>
   );
 };

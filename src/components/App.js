@@ -9,6 +9,7 @@ import Header from "./Header";
 import Filters from "./Filters";
 import CharacterList from "./CharacterList";
 import CharacterDetail from "./CharacterDetail";
+import ErrorId from "./ErrorId";
 
 function App() {
   //___________________________________________ VARIABLES ESTADO____________________________________________________________________
@@ -17,7 +18,7 @@ function App() {
   // Filter nombre
   const [name, setName] = useState("");
   //Filter especie
-  const [specie, setSpecie] = useState("");
+  const [filterSpecie, setFilterSpecie] = useState([]);
 
   //________________________________________________ USEEFFECT_________________________________________________________________________
 
@@ -36,42 +37,56 @@ function App() {
   const handleSearchName = (value) => {
     setName(value);
   };
-  //_____________________________________FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR_______________________________________________
-  // Filtro por nombre
-  const filteredCharacters = data.filter((searchCharacter) =>
-    searchCharacter.name.toLocaleLowerCase().includes(name.toLocaleLowerCase())
-  );
 
-  //------------------------------- OBTENIENDO RUTAS. Accedemos a la propiedad del objeto URL.----------------------
-  // const { pathname } = useLocation();
-  // //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
-  // const dataUrl = matchPath("/character/:characterId", pathname);
-
-  // // Vamos a hacer una validación , así conseguimos el id
-  // const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
-
-  // //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
-  // const characterFoundId = data.find(
-  //   (character) => character.id === parseInt(characterId)
-  // );
-  const CharacterFound = () => {
-    const { pathname } = useLocation();
-    //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
-    const dataUrl = matchPath("/character/:characterId", pathname);
-
-    // Vamos a hacer una validación , así conseguimos el id
-    const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
-
-    //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
-    const characterFoundId = data.find(
-      (character) => character.id === parseInt(characterId)
-    );
-    if (characterFoundId) {
-      return characterFoundId;
+  const handleFilterSpecies = (value) => {
+    if (filterSpecie.includes(value)) {
+      const position = filterSpecie.indexOf(value);
+      filterSpecie.splice(position, 1);
+      setFilterSpecie([...filterSpecie]);
     } else {
-      return characterFoundId;
+      setFilterSpecie([...filterSpecie, value]);
     }
   };
+
+  //_____________________________________FUNCIONES Y VARIABLES QUE AYUDEN A RENDERIZAR_______________________________________________
+  //Map para traernos a FilterBySpecie solo los species
+  const getSpecies = () => {
+    const characterSpecie = data.map((character) => character.species);
+    // return characterSpecie;
+    //la primera posicion del elemento del array
+    const uniqueSpecies = characterSpecie.filter((character, index) => {
+      return characterSpecie.indexOf(character) === index;
+    });
+    return uniqueSpecies;
+  };
+  // Filtro por nombre
+  const filteredCharacters = data
+    .filter((searchCharacter) =>
+      searchCharacter.name
+        .toLocaleLowerCase()
+        .includes(name.toLocaleLowerCase())
+    )
+    //Filtrar especies
+    .filter((character) => {
+      if (filterSpecie.length === 0) {
+        return true;
+      } else {
+        return filterSpecie.includes(character.species);
+      }
+    });
+
+  //------------------------------- OBTENIENDO RUTAS. Accedemos a la propiedad del objeto URL.----------------------
+  const { pathname } = useLocation();
+  //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
+  const dataUrl = matchPath("/character/:characterId", pathname);
+
+  // Vamos a hacer una validación , así conseguimos el id
+  const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
+
+  //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
+  const characterFoundId = data.find(
+    (character) => character.id === parseInt(characterId)
+  );
 
   //_____________________________________________________ RETURN_______________________________________________________________
   return (
@@ -86,8 +101,10 @@ function App() {
               <Filters
                 handleForm={handleForm}
                 name={name}
-                specie={specie}
                 handleSearchName={handleSearchName}
+                filterSpecie={filterSpecie}
+                species={getSpecies()}
+                handleFilterSpecies={handleFilterSpecies}
               ></Filters>
 
               <CharacterList
@@ -100,8 +117,9 @@ function App() {
         {/* Creamos una nueva ruta dinámina .1.Se compone de la parte estática. 2. la dinámica (el id)*/}
         <Route
           path="/character/:characterId"
-          element={<CharacterDetail character={CharacterFound()} />}
+          element={<CharacterDetail character={characterFoundId} />}
         ></Route>
+        <Route path="*" element={<ErrorId></ErrorId>}></Route>
       </Routes>
     </div>
   );
