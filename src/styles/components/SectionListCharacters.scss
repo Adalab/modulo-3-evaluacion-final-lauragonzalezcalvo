@@ -1,0 +1,24 @@
+@import "../core/reset.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+.characters {
+  font-family: $font-roboto;
+
+  &__List {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: $pageColor;
+    color: $letterColor;
+  }
+  &___Articles {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px 20px 0px;
+    &___Item {
+      background-color: $blue;
+      //   &___Item:hover {
+      //     border: cyan;
+      //   }
+    }
+  }
+}

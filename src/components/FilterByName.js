@@ -3,16 +3,19 @@ const FilterByName = (props) => {
     props.handleSearchName(ev.target.value);
   };
   return (
-    <>
-      <label htmlFor="city">Busca tu personaje</label>
+    <fieldset className="form__names">
+      <label htmlFor="city" className="form__names-label">
+        Busca tu personaje
+      </label>
       <input
         type="text"
         id="name"
         name="name"
         value={props.name}
         onInput={handleName}
+        className="form__names-input"
       ></input>
-    </>
+    </fieldset>
   );
 };
 export default FilterByName;

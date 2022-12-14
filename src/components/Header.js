@@ -1,10 +1,12 @@
-//importar los estilos Header.scss
-
+import { NavLink } from "react-router-dom";
+import "../styles/components/Header.scss";
+import logo from "../images/rickandmortyLogo.png";
 const Header = () => {
   return (
     <header className="header">
-      {/* backoground rickandmortylogo */}
-      <h1 className="header__image">Holi soy un header</h1>
+      <NavLink to="/">
+        <img className="header__image" src={logo} alt="logo de Rick y Morty" />
+      </NavLink>
     </header>
   );
 };

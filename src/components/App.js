@@ -1,4 +1,3 @@
-// import rickandmortyLogo from '../images/rickandmortyLogo.png';
 //Estilos
 import "../styles/App.scss";
 //Hooks
@@ -13,13 +12,15 @@ import CharacterDetail from "./CharacterDetail";
 
 function App() {
   //___________________________________________ VARIABLES ESTADO____________________________________________________________________
-  //Datos de la Api. Lo guardamos como un array vacío
+  //Datos de la Api.
   const [data, setData] = useState([]);
-  // FilterName
+  // Filter nombre
   const [name, setName] = useState("");
+  //Filter especie
+  const [specie, setSpecie] = useState("");
 
-  //_____________________________________________ USEEFFECT_________________________________________________________________________
-  // Nos permite hacer la petición al servidor una vez para que no se ejecute constantemente.
+  //________________________________________________ USEEFFECT_________________________________________________________________________
+
   useEffect(() => {
     fetchDataApi().then((dataResults) => {
       setData(dataResults);
@@ -27,11 +28,11 @@ function App() {
   }, []);
 
   //_______________________________________ FUNCIONES HANDLER_______________________________________________________________________
-  //Para evitar el envío del formulario.
+
   const handleForm = (ev) => {
     ev.preventDefault();
   };
-  //Para modificar nuestra variable estado, que recoge el valor de nuestro input
+
   const handleSearchName = (value) => {
     setName(value);
   };
@@ -42,17 +43,35 @@ function App() {
   );
 
   //------------------------------- OBTENIENDO RUTAS. Accedemos a la propiedad del objeto URL.----------------------
-  const { pathname } = useLocation();
-  //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
-  const dataUrl = matchPath("/character/:characterId", pathname);
+  // const { pathname } = useLocation();
+  // //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
+  // const dataUrl = matchPath("/character/:characterId", pathname);
 
-  // Vamos a hacer una validación , así conseguimos el id
-  const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
+  // // Vamos a hacer una validación , así conseguimos el id
+  // const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
 
-  //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
-  const characterFoundId = data.find(
-    (character) => character.id === parseInt(characterId)
-  );
+  // //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
+  // const characterFoundId = data.find(
+  //   (character) => character.id === parseInt(characterId)
+  // );
+  const CharacterFound = () => {
+    const { pathname } = useLocation();
+    //MatchPath. Si consoleamos vemos que dentro de params está el characterId que nos interesa
+    const dataUrl = matchPath("/character/:characterId", pathname);
+
+    // Vamos a hacer una validación , así conseguimos el id
+    const characterId = dataUrl !== null ? dataUrl.params.characterId : null;
+
+    //Find. para encontrar en el array el elemento con el id. Nos debería devolver un elemento(un objeto en este caso). Lo pasamos a numero con parseInt
+    const characterFoundId = data.find(
+      (character) => character.id === parseInt(characterId)
+    );
+    if (characterFoundId) {
+      return characterFoundId;
+    } else {
+      return characterFoundId;
+    }
+  };
 
   //_____________________________________________________ RETURN_______________________________________________________________
   return (
@@ -67,6 +86,7 @@ function App() {
               <Filters
                 handleForm={handleForm}
                 name={name}
+                specie={specie}
                 handleSearchName={handleSearchName}
               ></Filters>
 
@@ -80,7 +100,7 @@ function App() {
         {/* Creamos una nueva ruta dinámina .1.Se compone de la parte estática. 2. la dinámica (el id)*/}
         <Route
           path="/character/:characterId"
-          element={<CharacterDetail character={characterFoundId} />}
+          element={<CharacterDetail character={CharacterFound()} />}
         ></Route>
       </Routes>
     </div>

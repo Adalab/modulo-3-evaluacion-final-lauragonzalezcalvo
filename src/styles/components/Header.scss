@@ -1,0 +1,26 @@
+@import "../core/reset.scss";
+@import "../core/variables.scss";
+@import "../core/mixins.scss";
+
+.header {
+  width: 100%;
+  height: 100px;
+  background-color: $pageColor;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include tablet {
+    height: 300px;
+  }
+  @include desktop {
+  }
+  &__image {
+    width: 220px;
+    @include tablet {
+      width: 500px;
+    }
+    @include desktop {
+      width: 800px;
+    }
+  }
+}
